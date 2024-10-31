@@ -14,5 +14,5 @@ public interface IOrdenService {
 
     public Orden findOrden(Long id);
 
-    public void editOrden(Long idOriginal, int nuevoCantidad, Long nuevoUsuarioID,Date nuevaFecha, boolean nuevoEstado, double nuevoTotal);
+    public void editOrden(Long idOriginal, int nuevoCantidad, Long nuevoUsuarioID,Date nuevaFecha, Long nuevoEstado, double nuevoTotal);
 }
