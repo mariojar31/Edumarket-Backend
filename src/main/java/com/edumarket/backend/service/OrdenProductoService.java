@@ -1,6 +1,5 @@
 package com.edumarket.backend.service;
 
-<<<<<<< HEAD
 import com.edumarket.backend.model.Orden;
 import com.edumarket.backend.model.OrdenProducto;
 import com.edumarket.backend.model.Producto;
@@ -53,7 +52,4 @@ public class OrdenProductoService implements IOrdenProductoService {
     }
 
     
-=======
-public class OrdenProductoService {
->>>>>>> ce1517c08bd0b3119004acaa08a72091def9cdc0
 }
