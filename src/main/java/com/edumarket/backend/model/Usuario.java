@@ -1,32 +1,42 @@
 package com.edumarket.backend.model;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    Long id_usuario;
-    String nombreUsuario;
-    String email;
-    String contrasena;
-    boolean is_admin;
-    Long estudianteId;
+    private Long id_usuario;
+    private String nombreUsuario;
+    private String email;
+    private String contrasena;
+    private boolean is_admin;
+    @OneToOne
+    @JoinColumn(name="estudianteId", referencedColumnName="id_estudiante")
+    private Estudiante estudiante;
+    @OneToMany(mappedBy="usuario")
+    private List<Orden> ordenes;
+
 
     public Usuario(){
 
     }
 
-    public Usuario(Long id_usuario, String nombreUsuario, String email, String contrasena, boolean is_admin, Long estudianteId) {
+    public Usuario(Long id_usuario, String nombreUsuario, String email, String contrasena, boolean is_admin, Estudiante estudiante) {
         this.id_usuario = id_usuario;
         this.nombreUsuario = nombreUsuario;
         this.email = email;
         this.contrasena = contrasena;
         this.is_admin = is_admin;
-        this.estudianteId = estudianteId;
+        this.estudiante = estudiante;
     }
 
     public Long getId_usuario() {
@@ -61,7 +71,7 @@ public class Usuario {
         this.contrasena = contrasena;
     }
 
-    public boolean isIs_admin() {
+    public boolean getIs_admin() {
         return is_admin;
     }
 
@@ -69,11 +79,23 @@ public class Usuario {
         this.is_admin = is_admin;
     }
 
-    public Long getEstudianteId() {
-        return estudianteId;
+    public Estudiante getEstudiante() {
+        return estudiante;
     }
 
-    public void setEstudianteId(Long estudianteId) {
-        this.estudianteId = estudianteId;
+    public void setEstudiante(Estudiante estudiante) {
+        this.estudiante = estudiante;
     }
+
+    public void setOrdenes(List<Orden> ordenes) {
+        this.ordenes = ordenes;
+    }
+
+    public List<Orden> getOrdenes() {
+        return ordenes;
+    }
+
+
+
+    
 }

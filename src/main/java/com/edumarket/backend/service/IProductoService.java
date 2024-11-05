@@ -1,12 +1,13 @@
 package com.edumarket.backend.service;
 
-import com.edumarket.backend.model.Producto;
-
-import java.util.Date;
 import java.util.List;
 
+import com.edumarket.backend.DTO.ProductoDTO;
+import com.edumarket.backend.model.CategoriaProducto;
+import com.edumarket.backend.model.Producto;
+
 public interface IProductoService {
-    public List<Producto> getProductos();
+    public List<ProductoDTO> getProductos();
 
     public void saveProducto(Producto Producto);
 
@@ -14,5 +15,7 @@ public interface IProductoService {
 
     public Producto findProducto(Long id);
 
-    public void editProducto(Long idOriginal, String nuevoNombre, double nuevoPrecio, String nuevaCategoria, int nuevoStock);
+    public ProductoDTO getProductoById(Long id);
+
+    public void editProducto(Long id, String nuevoNombre, double nuevoPrecio, CategoriaProducto nuevaCategoria, int nuevoStock);
 }

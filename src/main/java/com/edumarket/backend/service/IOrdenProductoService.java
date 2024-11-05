@@ -1,6 +1,8 @@
 package com.edumarket.backend.service;
 
+import com.edumarket.backend.model.Orden;
 import com.edumarket.backend.model.OrdenProducto;
+import com.edumarket.backend.model.Producto;
 
 import java.util.List;
 
@@ -13,5 +15,5 @@ public interface IOrdenProductoService {
 
     public OrdenProducto findOrdenProducto(Long id);
 
-    public void editOrdenProducto(Long idOriginal, int nuevoCantidad,Long nuevoProductoID, double subtotal);
+    public void editOrdenProducto(Long id, int nuevaCantidad, Producto nuevoProducto, Orden nuevaOrden, double subtotal);
 }

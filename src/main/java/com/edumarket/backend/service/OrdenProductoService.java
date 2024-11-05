@@ -1,16 +1,19 @@
 package com.edumarket.backend.service;
 
-import com.edumarket.backend.model.Estudiante;
+import com.edumarket.backend.model.Orden;
 import com.edumarket.backend.model.OrdenProducto;
-import com.edumarket.backend.repository.IEstudianteRepository;
+import com.edumarket.backend.model.Producto;
 import com.edumarket.backend.repository.IOrdenProductoRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+
 
 import java.util.List;
 
 @Service
 public class OrdenProductoService implements IOrdenProductoService {
 
+    @Autowired
     private IOrdenProductoRepository ordenProductoRepository;
 
     @Override
@@ -38,14 +41,15 @@ public class OrdenProductoService implements IOrdenProductoService {
     }
 
     @Override
-    public void editOrdenProducto(Long idOriginal, int nuevoCantidad, Long nuevoProductoID, double nuevoSubtotal) {
+    public void editOrdenProducto(Long id, int nuevaCantidad, Producto nuevoProducto, Orden nuevaOrden, double subtotal) {
 
-        OrdenProducto ordenproducto=this.findOrdenProducto(idOriginal);
-        ordenproducto.setCantidad(nuevoCantidad);
-        ordenproducto.setProductoId(nuevoProductoID);
-        ordenproducto.setSubtotal(nuevoSubtotal);
-
+        OrdenProducto ordenproducto=this.findOrdenProducto(id);
+        ordenproducto.setCantidad(nuevaCantidad);
+        ordenproducto.setProducto(nuevoProducto);
+        ordenproducto.setSubtotal(subtotal);
         this.saveOrdenProducto(ordenproducto);
 
     }
+
+    
 }

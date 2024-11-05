@@ -1,9 +1,8 @@
 package com.edumarket.backend.service;
 
-import com.edumarket.backend.model.Estado;
-import com.edumarket.backend.model.Estudiante;
-
 import java.util.List;
+
+import com.edumarket.backend.model.Estudiante;
 
 public interface IEstudianteService {
     public List<Estudiante> getEstudiantes();
@@ -14,5 +13,7 @@ public interface IEstudianteService {
 
     public Estudiante findEstudiante(Long id);
 
-    public void editEstudiante(Long idOriginal, String nuevoNombr, String nuevoGrado);
+    public void editEstudiante(Long id, String nuevoNombr, String nuevoGrado);
+
+    public void updateStudentsList(List<Estudiante> estudiantes);
 }

@@ -1,22 +1,36 @@
 package com.edumarket.backend.service;
 
-import com.edumarket.backend.model.Estudiante;
-import com.edumarket.backend.model.Producto;
-import com.edumarket.backend.repository.IEstudianteRepository;
-import com.edumarket.backend.repository.IProductoRepository;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.edumarket.backend.DTO.ProductoDTO;
+import com.edumarket.backend.model.CategoriaProducto;
+import com.edumarket.backend.model.Producto;
+import com.edumarket.backend.repository.IProductoRepository;
 
 @Service
 public class ProductoService implements IProductoService {
 
+    @Autowired
     private IProductoRepository productoRepository;
 
+    private ProductoDTO convertToDTO(Producto producto) {
+        ProductoDTO dto = new ProductoDTO();
+        dto.setId_producto(producto.getId_producto());
+        dto.setCategoria(producto.getCategoria());
+        dto.setNombreProducto(producto.getNombreProducto());
+        dto.setPrecio(producto.getPrecio());
+        dto.setStock(producto.getStock());
+        return dto;
+    }
+
     @Override
-    public List<Producto> getProductos() {
+    public List<ProductoDTO> getProductos() {
         List<Producto> listaProducto = productoRepository.findAll();
-        return listaProducto;
+        return listaProducto.stream().map(this::convertToDTO).collect(Collectors.toList());
     }
 
     @Override
@@ -38,9 +52,15 @@ public class ProductoService implements IProductoService {
     }
 
     @Override
-    public void editProducto(Long idOriginal, String nuevoNombre, double nuevoPrecio, String nuevaCategoria, int nuevoStock) {
+    public ProductoDTO getProductoById(Long id){
+        Producto producto = this.findProducto(id);
+        return convertToDTO(producto);
+    }
 
-        Producto producto=this.findProducto(idOriginal);
+    @Override
+    public void editProducto(Long id, String nuevoNombre, double nuevoPrecio, CategoriaProducto nuevaCategoria, int nuevoStock) {
+
+        Producto producto=this.findProducto(id);
         producto.setNombreProducto(nuevoNombre);
         producto.setPrecio(nuevoPrecio);
         producto.setCategoria(nuevaCategoria);

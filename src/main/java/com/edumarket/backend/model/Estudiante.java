@@ -1,17 +1,22 @@
 package com.edumarket.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Estudiante {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    Long id_estudiante;
-    String nombreEstudiante;
-    String grado;
+    @Column(unique = true, nullable = false)
+    private Long id_estudiante;
+    private String nombreEstudiante;
+    private String grado;
+    @OneToOne(mappedBy="estudiante")
+    @JsonIgnore
+    private Usuario usuario;
 
     public Estudiante(){
 
@@ -45,4 +50,14 @@ public class Estudiante {
     public void setGrado(String grado) {
         this.grado = grado;
     }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+
 }

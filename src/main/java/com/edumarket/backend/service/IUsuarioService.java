@@ -1,11 +1,13 @@
 package com.edumarket.backend.service;
 
-import com.edumarket.backend.model.Usuario;
-
 import java.util.List;
 
+import com.edumarket.backend.DTO.UsuarioDTO;
+import com.edumarket.backend.model.Usuario;
+
+
 public interface IUsuarioService {
-    public List<Usuario> getUsuarios();
+    public List<UsuarioDTO> getUsuarios();
 
     public void saveUsuario(Usuario Usuario);
 
@@ -13,5 +15,5 @@ public interface IUsuarioService {
 
     public Usuario findUsuario(Long id);
 
-    public void editUsuario(Long idOriginal, String nuevoUsuario, String nuevoEmail, String nuevoContrasena, boolean nuevoIsAdmin, Long nuevoEstudianteid);
+    public void editUsuario(Long id, String nuevoUsuario, String nuevoEmail, String nuevoContrasena, Long estudianteId, boolean nuevoIsAdmin);
 }

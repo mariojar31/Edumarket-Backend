@@ -1,33 +1,50 @@
 package com.edumarket.backend.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+
 import java.util.Date;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import jakarta.persistence.EnumType;
 
 @Entity
 public class Orden {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-
-    Long id_orden;
-    int cantidad;
-    Long usuarioId;
-    Date fecha;
+    private Long id_orden;
+    private int cantidad;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date fecha;
     double  valorTotal;
-    Long estadoId;
+    @Enumerated(EnumType.STRING)
+    private EstadoOrden estado;
+    @ManyToOne
+    @JoinColumn(name="id_usuario")
+    private Usuario usuario;
+    @OneToMany(mappedBy="orden")
+    private List<OrdenProducto> detallesOrden;
+    
 
     public Orden(){
+        this.estado = EstadoOrden.EN_PROCESO;
+        this.fecha = new Date();
 
     }
-    public Orden(Long id_orden, int cantidad, Long usuarioId, Date fecha, double valorTotal, Long estadoId) {
+    public Orden(Long id_orden, int cantidad, Date fecha, double valorTotal) {
         this.id_orden = id_orden;
         this.cantidad = cantidad;
-        this.usuarioId = usuarioId;
-        this.fecha = fecha;
+        this.fecha = new Date();
         this.valorTotal = valorTotal;
-        this.estadoId = estadoId;
+        this.estado = EstadoOrden.EN_PROCESO;
     }
 
     public Long getId_orden() {
@@ -46,14 +63,6 @@ public class Orden {
         this.cantidad = cantidad;
     }
 
-    public Long getUsuarioId() {
-        return usuarioId;
-    }
-
-    public void setUsuarioId(Long usuarioId) {
-        this.usuarioId = usuarioId;
-    }
-
     public Date getFecha() {
         return fecha;
     }
@@ -70,11 +79,27 @@ public class Orden {
         this.valorTotal = valorTotal;
     }
 
-    public Long getEstadoId() {
-        return estadoId;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
-    public void setEstadoId(Long estadoId) {
-        this.estadoId = estadoId;
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setEstado(EstadoOrden estado) {
+        this.estado = estado;
+    }
+
+    public EstadoOrden getEstado() {
+        return estado;
+    }
+
+    public void setDetallesOrden(List<OrdenProducto> detalles) {
+        this.detallesOrden = detalles;
+    }
+
+    public List<OrdenProducto> getDetallesOrden() {
+        return detallesOrden;
     }
 }
