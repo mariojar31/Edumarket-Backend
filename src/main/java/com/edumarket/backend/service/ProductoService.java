@@ -1,5 +1,6 @@
 package com.edumarket.backend.service;
 
+<<<<<<< HEAD
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -67,4 +68,7 @@ public class ProductoService implements IProductoService {
         producto.setStock(nuevoStock);
         this.saveProducto(producto);
     }
+=======
+public class ProductoService {
+>>>>>>> ce1517c08bd0b3119004acaa08a72091def9cdc0
 }

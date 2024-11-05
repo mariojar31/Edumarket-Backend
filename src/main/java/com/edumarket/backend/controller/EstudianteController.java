@@ -17,7 +17,7 @@ import com.edumarket.backend.service.IEstudianteService;
 
 @RestController
 public class EstudianteController {
-    @Autowired
+   @Autowired
     private IEstudianteService studentService;
 
     @GetMapping("/estudiantes/get")
@@ -29,7 +29,7 @@ public class EstudianteController {
     public String saveEstudiante(@RequestBody Estudiante estudiante){
         studentService.saveEstudiante(estudiante);
         return "El estudiante fue agregado con éxito";
-    }
+   }
 
     @DeleteMapping("/estudiantes/delete/{id}")
     public String deleteEstudiante(@PathVariable Long id){
@@ -43,7 +43,7 @@ public class EstudianteController {
                                 @RequestParam(required=false, name="grado") String grado){
         studentService.editEstudiante(id,nombre,grado);
         return "Estudiante modificado con éxito.";
-    }
+   }
 
     @GetMapping("/estudiantes/find/{id}")
     public Estudiante findEstudiante(@PathVariable Long id){
@@ -54,5 +54,6 @@ public class EstudianteController {
     public String updateEstudiantes(@RequestBody List<Estudiante> estudiantes){
         studentService.updateStudentsList(estudiantes);
         return "Estudiantes Actualizados con éxito";
-    }
+   }
+
 }

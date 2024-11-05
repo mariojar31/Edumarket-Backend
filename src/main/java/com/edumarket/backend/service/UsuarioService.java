@@ -1,5 +1,6 @@
 package com.edumarket.backend.service;
 
+<<<<<<< HEAD
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -75,4 +76,7 @@ public class UsuarioService implements IUsuarioService {
         usuario.setIs_admin(nuevoIsAdmin);
         this.saveUsuario(usuario);
     }
+=======
+public class UsuarioService {
+>>>>>>> ce1517c08bd0b3119004acaa08a72091def9cdc0
 }

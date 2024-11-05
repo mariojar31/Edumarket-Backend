@@ -1,5 +1,6 @@
 package com.edumarket.backend.service;
 
+<<<<<<< HEAD
 import java.util.Date;
 import java.util.List; 
 import java.util.stream.Collectors;
@@ -128,4 +129,7 @@ public class OrdenService implements IOrdenService {
         return detalles.stream().map(this::convertToDetalleDTO).collect(Collectors.toList());
     }
 
+=======
+public class OrdenService {
+>>>>>>> ce1517c08bd0b3119004acaa08a72091def9cdc0
 }
