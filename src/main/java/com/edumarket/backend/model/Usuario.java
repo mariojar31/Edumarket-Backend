@@ -19,6 +19,9 @@ public class Usuario {
     public Usuario(){
 
     }
+    @OneToOne
+    @JoinColumn(name="id_Estudiante")
+    private Estudiante estudiante;
 
     public Usuario(Long id_usuario, String nombreUsuario, String email, String contrasena, boolean is_admin, Long estudianteId) {
         this.id_usuario = id_usuario;
