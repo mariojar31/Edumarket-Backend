@@ -12,6 +12,9 @@ public class Estudiante {
     Long id_estudiante;
     String nombreEstudiante;
     String grado;
+    
+    @OneToOne(mappedBy = "estudiante")
+    private Usuario usuario;
 
     public Estudiante(){
 
