@@ -21,9 +21,13 @@ public class ProductoService implements IProductoService {
         ProductoDTO dto = new ProductoDTO();
         dto.setId_producto(producto.getId_producto());
         dto.setCategoria(producto.getCategoria());
+        dto.setDescripcion(producto.getDescripcion());
         dto.setNombreProducto(producto.getNombreProducto());
         dto.setPrecio(producto.getPrecio());
         dto.setStock(producto.getStock());
+        dto.setImg(producto.getImg());
+        dto.setTop(producto.getTop());
+
         return dto;
     }
 
@@ -37,6 +41,13 @@ public class ProductoService implements IProductoService {
     public void saveProducto(Producto Producto) {
         productoRepository.save(Producto);
 
+    }
+
+    @Override
+    public void saveProductList(List<Producto> productsList){
+        for(Producto product:productsList){
+            productoRepository.save(product);
+        }
     }
 
     @Override
@@ -66,5 +77,10 @@ public class ProductoService implements IProductoService {
         producto.setCategoria(nuevaCategoria);
         producto.setStock(nuevoStock);
         this.saveProducto(producto);
+    }
+
+    @Override
+    public void deleteAll(){
+        productoRepository.deleteAll();
     }
 }

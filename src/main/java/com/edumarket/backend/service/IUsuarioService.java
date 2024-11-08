@@ -16,4 +16,6 @@ public interface IUsuarioService {
     public Usuario findUsuario(Long id);
 
     public void editUsuario(Long id, String nuevoUsuario, String nuevoEmail, String nuevoContrasena, Long estudianteId, boolean nuevoIsAdmin);
+
+    public UsuarioDTO findUserByEmail(String email);
 }

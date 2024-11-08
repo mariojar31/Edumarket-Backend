@@ -11,6 +11,8 @@ public interface IProductoService {
 
     public void saveProducto(Producto Producto);
 
+    public void saveProductList(List<Producto> productsList);
+
     public void deleteProducto(Long id);
 
     public Producto findProducto(Long id);
@@ -18,4 +20,6 @@ public interface IProductoService {
     public ProductoDTO getProductoById(Long id);
 
     public void editProducto(Long id, String nuevoNombre, double nuevoPrecio, CategoriaProducto nuevaCategoria, int nuevoStock);
+
+    public void deleteAll();
 }

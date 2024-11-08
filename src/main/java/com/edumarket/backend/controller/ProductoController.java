@@ -34,6 +34,12 @@ public class ProductoController {
         return "El Producto fue agregado con éxito";
     }
 
+    @PostMapping("/producto/addlist")
+    public String addProductsList(@RequestBody List<Producto> productos){
+        productService.saveProductList(productos);
+        return "Productos agregados con éxito...";
+    }
+
     @DeleteMapping("/producto/delete/{id}")
     public String deleteProducto(@PathVariable Long id){
         productService.deleteProducto(id);
@@ -51,10 +57,14 @@ public class ProductoController {
     }
 
     @GetMapping("/producto/find/{id}")
-    public Producto findProducto(@PathVariable Long id){
-        return productService.findProducto(id);
+    public ProductoDTO findProducto(@PathVariable Long id){
+        return productService.getProductoById(id);
     }
 
-
+    @GetMapping("/producto/deleteall")
+    public String deleteAll(){
+        productService.deleteAll();
+        return "Productos eliminados con exito";
+    }
     
 }

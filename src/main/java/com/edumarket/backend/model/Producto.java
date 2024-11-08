@@ -14,9 +14,12 @@ public class Producto {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id_producto;
     private String nombreProducto;
+    private String descripcion;
     private double precio;
+    private String img;
     private CategoriaProducto categoria;
     private int stock;
+    private Boolean top;
     @OneToMany(mappedBy = "producto")
     private List<OrdenProducto> detallesOrdenes;
 
@@ -25,12 +28,15 @@ public class Producto {
 
     }
 
-    public Producto(Long id_producto, String nombreProducto, double precio, CategoriaProducto categoria, int stock) {
+    public Producto(Long id_producto, String nombreProducto, String descripcion, double precio, String img, CategoriaProducto categoria, int stock, Boolean top) {
         this.id_producto = id_producto;
         this.nombreProducto = nombreProducto;
+        this.descripcion = descripcion;
         this.precio = precio;
+        this.img = img;
         this.categoria = categoria;
         this.stock = stock;
+        this.top = top;
     }
 
     public Long getId_producto() {
@@ -80,4 +86,30 @@ public class Producto {
     public List<OrdenProducto> getDetallesOrdenes() {
         return detallesOrdenes;
     }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public Boolean getTop() {
+        return top;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public void setTop(Boolean top) {
+        this.top = top;
+    }
+
+    
 }

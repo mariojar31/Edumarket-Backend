@@ -5,19 +5,24 @@ import com.edumarket.backend.model.CategoriaProducto;
 public class ProductoDTO {
     private Long id_producto;
     private String nombreProducto;
+    private String descripcion;
     private double precio;
+    private String img;
     private CategoriaProducto categoria;
     private int stock;
-
+    private Boolean top;
     public ProductoDTO() {
     }
 
-    public ProductoDTO(Long id_producto, String nombreProducto, double precio, CategoriaProducto categoria, int stock) {
+    public ProductoDTO(Long id_producto, String nombreProducto, String descripcion, double precio, String img, CategoriaProducto categoria, int stock, Boolean top) {
         this.id_producto = id_producto;
         this.nombreProducto = nombreProducto;
         this.precio = precio;
         this.categoria = categoria;
         this.stock = stock;
+        this.descripcion = descripcion;
+        this.img = img;
+        this.top = top;
     }
 
     public void setStock(int stock) {
@@ -57,6 +62,30 @@ public class ProductoDTO {
 
     public CategoriaProducto getCategoria() {
         return categoria;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public Boolean getTop() {
+        return top;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public void setTop(Boolean top) {
+        this.top = top;
     }
     
 }
